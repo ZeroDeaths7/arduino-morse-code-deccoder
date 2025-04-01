@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Decoder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Morse Code Decoder</h1>
+    <div class="container">
+        <h2>Decoded Text:</h2>
+        <p id="decodedText"></p>
+    </div>
+
+    <script>
+        // Live update decoded text using Server-Sent Events (SSE)
+        const decodedText = document.getElementById("decodedText");
+
+        const eventSource = new EventSource("/stream");
+        eventSource.onmessage = function(event) {
+            decodedText.textContent += event.data;  // Append received letter
+        };
+    </script>
+</body>
+</html>

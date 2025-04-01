@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color:  #E7CEB5;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: #551705;
+    padding: 20px;
+    display: inline-block;
+    color:#E7CEB5;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #000000;
+}
+
+p {
+    font-size: 24px;
+    font-weight: bold;
+}
