@@ -14,12 +14,16 @@
     </div>
 
     <script>
-        // Live update decoded text using Server-Sent Events (SSE)
         const decodedText = document.getElementById("decodedText");
 
+        // Restore text from localStorage on page load
+        decodedText.innerText = localStorage.getItem("decodedMessage") || "";
+
+        // Live update decoded text using Server-Sent Events (SSE)
         const eventSource = new EventSource("/stream");
         eventSource.onmessage = function(event) {
-            decodedText.textContent += event.data;  // Append received letter
+            decodedText.innerText += event.data;  // Update latest decoded message
+            localStorage.setItem("decodedMessage", decodedText.innerText); // Save it
         };
     </script>
 </body>
