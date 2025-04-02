@@ -9,21 +9,22 @@
 <body>
     <h1>Morse Code Decoder</h1>
     <div class="container">
-        <h2>Decoded Text:</h2>
-        <p id="decodedText"></p>
+        <div id="decoded"></div>
+        <p>Decoded Text:</p>
+        <button class="btn" onclick="clearDecoded()">Clear</button>
     </div>
 
     <script>
-        const decodedText = document.getElementById("decodedText");
+        const decodedDiv = document.getElementById("decoded");
 
-        // Restore text from localStorage on page load
-        decodedText.innerText = localStorage.getItem("decodedMessage") || "";
+        function clearDecoded() {
+            decodedDiv.innerHTML = "";  // Clear the decoded text
+        }
 
-        // Live update decoded text using Server-Sent Events (SSE)
+        // Stream Morse code from the Flask backend
         const eventSource = new EventSource("/stream");
         eventSource.onmessage = function(event) {
-            decodedText.innerText += event.data;  // Update latest decoded message
-            localStorage.setItem("decodedMessage", decodedText.innerText); // Save it
+            decodedDiv.innerHTML += event.data + " ";  // Append new data
         };
     </script>
 </body>
