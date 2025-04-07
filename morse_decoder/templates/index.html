@@ -9,22 +9,94 @@
 <body>
     <h1>Morse Code Decoder</h1>
     <div class="container">
-        <div id="decoded"></div>
+        <p>Morse Code:</p>
+        <div id="morse"></div>
+
         <p>Decoded Text:</p>
+        <div id="decoded"></div>
+
         <button class="btn" onclick="clearDecoded()">Clear</button>
+
+        <div class="cheatsheet-container">
+            <h2 style="color: #E7CEB5;">Morse Code Cheatsheet</h2>
+            <div class="cheatsheet">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Character</th>
+                            <th>Morse Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>A</td><td>.-</td></tr>
+                        <tr><td>B</td><td>-...</td></tr>
+                        <tr><td>C</td><td>-.-.</td></tr>
+                        <tr><td>D</td><td>-..</td></tr>
+                        <tr><td>E</td><td>.</td></tr>
+                        <tr><td>F</td><td>..-.</td></tr>
+                        <tr><td>G</td><td>--.</td></tr>
+                        <tr><td>H</td><td>....</td></tr>
+                        <tr><td>I</td><td>..</td></tr>
+                        <tr><td>J</td><td>.---</td></tr>
+                        <tr><td>K</td><td>-.-</td></tr>
+                        <tr><td>L</td><td>.-..</td></tr>
+                        <tr><td>M</td><td>--</td></tr>
+                        <tr><td>N</td><td>-.</td></tr>
+                        <tr><td>O</td><td>---</td></tr>
+                        <tr><td>P</td><td>.--.</td></tr>
+                        <tr><td>Q</td><td>--.-</td></tr>
+                        <tr><td>R</td><td>.-.</td></tr>
+                        <tr><td>S</td><td>...</td></tr>
+                        <tr><td>T</td><td>-</td></tr>
+                        <tr><td>U</td><td>..-</td></tr>
+                        <tr><td>V</td><td>...-</td></tr>
+                        <tr><td>W</td><td>.--</td></tr>
+                        <tr><td>X</td><td>-..-</td></tr>
+                        <tr><td>Y</td><td-.--</td></tr>
+                        <tr><td>Z</td><td>--..</td></tr>
+        
+                        <tr><td>0</td><td>-----</td></tr>
+                        <tr><td>1</td><td>.----</td></tr>
+                        <tr><td>2</td><td>..---</td></tr>
+                        <tr><td>3</td><td>...--</td></tr>
+                        <tr><td>4</td><td>....-</td></tr>
+                        <tr><td>5</td><td>.....</td></tr>
+                        <tr><td>6</td><td>-....</td></tr>
+                        <tr><td>7</td><td>--...</td></tr>
+                        <tr><td>8</td><td>---..</td></tr>
+                        <tr><td>9</td><td>----.</td></tr>
+        
+                        <tr><td>.</td><td>.-.-.-</td></tr>
+                        <tr><td>,</td><td>--..--</td></tr>
+                        <tr><td>?</td><td>..--..</td></tr>
+                        <tr><td>!</td><td>-.-.--</td></tr>
+                        <tr><td>[space]</td><td>------</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
     <script>
         const decodedDiv = document.getElementById("decoded");
+        const morseDiv = document.getElementById("morse");
 
         function clearDecoded() {
-            decodedDiv.innerHTML = "";  // Clear the decoded text
+            decodedDiv.innerHTML = "";
+            morseDiv.innerHTML = "";
         }
 
-        // Stream Morse code from the Flask backend
         const eventSource = new EventSource("/stream");
         eventSource.onmessage = function(event) {
-            decodedDiv.innerHTML += event.data + " ";  // Append new data
+            const data = event.data;
+
+            // Show dots and dashes separately from decoded letters
+            if (data.startsWith(".") || data.startsWith("-")) {
+                morseDiv.innerHTML += data + " ";
+            } else {
+                decodedDiv.innerHTML += data + " ";
+            }
         };
     </script>
 </body>

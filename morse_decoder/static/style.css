@@ -8,11 +8,11 @@ body {
 
 .container {
     background: #551705;
-    padding: 20px;
+    padding: 50px;
     display: inline-block;
     color: #E7CEB5;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -26,7 +26,7 @@ p {
 
 #decoded {
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: 50px;
     white-space: pre-wrap;
 }
 
@@ -37,7 +37,7 @@ p {
     font-size: 18px;
     background-color: #8b4513;
     color: white;
-    border: none;
+    border: #E7CEB5 2px solid;
     cursor: pointer;
     border-radius: 5px;
 }
@@ -45,3 +45,50 @@ p {
 .btn:hover {
     background-color: #a0522d;
 }
+
+#morse, #decoded {
+    font-size: 24px;
+    margin: 10px 0px;
+    white-space: pre-wrap;
+}
+
+.cheatsheet-container {
+    margin-top: 30px;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cheatsheet-container h2 {
+    color: #000000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.cheatsheet {
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    color: #000000;
+}
+
+.cheatsheet table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cheatsheet th,
+.cheatsheet td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: center;
+}
+
+.cheatsheet th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
